@@ -1,0 +1,49 @@
+<div class="comments-container">
+  <div class="count">
+    <i class="fa-solid fa-message"></i> {{ _comments.length }}
+    {{ "page.comments" | translate }}
+  </div>
+  <hr class="separator" />
+  <div class="comments">
+    <div class="comment-reply-container">
+      <input
+        class="comment-input"
+        type="text"
+        name="comment"
+        [(ngModel)]="newContent"
+      />
+      <button class="comment-btn" type="button" (click)="reply(newContent)">
+        {{ "page.send" | translate }}
+      </button>
+    </div>
+    <ng-container *ngFor="let comment of _comments">
+      <comment
+        [comment]="comment"
+        [level]="1"
+        (reply)="lastOpenedCommentId = $event"
+      ></comment>
+      <ng-container *ngIf="comment.reply">
+        <comment
+          *ngFor="let subComment of comment.subComments"
+          [comment]="subComment"
+          [level]="2"
+        ></comment>
+        <div class="comment-reply-container subComment">
+          <input
+            class="comment-input"
+            type="text"
+            name="subComment"
+            [(ngModel)]="comment.newContent"
+          />
+          <button
+            class="comment-btn"
+            type="button"
+            (click)="reply(comment.newContent, comment.id)"
+          >
+            {{ "page.send" | translate }}
+          </button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

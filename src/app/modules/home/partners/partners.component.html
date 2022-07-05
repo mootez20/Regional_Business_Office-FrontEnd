@@ -1,0 +1,30 @@
+<section class="bt-1 bb-1 bg-white">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-12 text-center">
+        <h1 class="mb-15">{{ 'page.partners' | translate }}</h1>
+        <hr class="w-100 bg-primary" />
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="owl-carousel owl-theme owl-btn-1"
+        data-nav-arrow="false"
+        data-nav-dots="false"
+        data-items="8"
+        data-md-items="4"
+        data-sm-items="3"
+        data-xs-items="2"
+        data-xx-items="2"
+      >
+        <div class="item" *ngFor="let partner of partnerList">
+          <img
+            [src]="STORAGE_URL + partner.logo"
+            class="img-fluid my-15 rounded box-shadowed pull-up"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"><p style="color: white" > Loading... </p></ngx-spinner> -->
+</section>

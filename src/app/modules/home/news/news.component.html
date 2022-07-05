@@ -1,0 +1,36 @@
+<section class="py-50 bg-white aos-init">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-12 text-center">
+        <h1 class="mb-15">{{ 'page.eventsProgress' | translate }} 
+          <ng-container *ngIf="selectedCity?.id"> {{ ('cities.'+ selectedCity?.name ) | translate }}
+          </ng-container>
+        </h1>
+        <hr class="w-100 bg-primary" />
+      </div>
+    </div>
+    <div class="row mt-30">
+      <div class="col-lg-3 col-md-6 col-12"
+        *ngFor="let news of newsList">
+        <div routerLink="/event/news/{{ news.id }}"
+          class="box bg-img text-center py-50 pull-up"
+          [style.background-image]="'url(' + STORAGE_URL + news.image.replaceAll('\\','/') + ')'">
+          <div class="box-body"></div>
+          <div class="box-body"></div>
+
+          <div class="box-body py-15 bg-black-70 rounded-0">
+            <h4 class="text-white">{{ news.title }}</h4>
+          </div>
+        </div>
+      </div>
+
+      <a *ngIf="newsList.length >= 4"
+        routerLink="/event-list/news"
+        id="partner"
+        class="btn btn-outline btn-primary btn-sm"
+        style="width: 10%; margin-right: 45%">
+        {{ 'page.showMore' | translate }}
+      </a>
+    </div>
+  </div>
+</section>

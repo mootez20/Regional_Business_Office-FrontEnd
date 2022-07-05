@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14" viewBox="0 0 14 14">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="icon_notification_priority_high_24px" data-name="icon/notification/priority_high_24px" d="M.7,6.268a.7.7,0,1,1,.7-.7A.7.7,0,0,1,.7,6.268Zm.7-2.09H0V0H1.393V4.179Z" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Groupe_6156" data-name="Groupe 6156" transform="translate(-1438 1374.279) rotate(180)">
+    <g id="Ellipse_229" data-name="Ellipse 229" transform="translate(-1452 1360.28)" fill="#fff" stroke="#0d4e8a" stroke-width="1">
+      <circle cx="7" cy="7" r="7" stroke="none"/>
+      <circle cx="7" cy="7" r="6.5" fill="none"/>
+    </g>
+    <g id="Groupe_5276" data-name="Groupe 5276" transform="translate(-1445.747 1364.214)" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="↳ Color" transform="translate(-3.482 -1.045)">
+        <rect id="_Color_background" data-name="↳ Color background" width="8.358" height="8.358" fill="#0d4e8a"/>
+        <rect id="Rectangle" width="8.358" height="8.358" fill="#0d4e8a"/>
+      </g>
+    </g>
+  </g>
+</svg>

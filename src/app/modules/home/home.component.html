@@ -1,0 +1,18 @@
+<research
+  [cityList]="cityList"
+  [_selectedCity]="user?.city || defaultCity"
+  [id]="user?.city?.id"
+  [name]="user?.city?.name"
+  [images]="user?.city?.images || []"
+  (cityChanged)="cityChanged($event)"
+></research>
+<news [newsList]="newsList" [selectedCity]="user?.city"></news>
+<partners [partnerList]="partnerList"></partners>
+<events
+  [eventList]="eventList"
+  [cityList]="cityList"
+  [selectedCity]="user?.city"
+  (cityChanged)="loadEvents($event)"
+></events>
+<infos></infos>
+<albums [albumList]="albumList" [selectedCity]="user?.city"></albums>

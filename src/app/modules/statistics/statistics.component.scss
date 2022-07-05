@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  background-color: #d5d7da;
+  padding: 2rem 0;
+
+  .statistics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .chart-title {
+      display: block;
+      width: 60rem;
+      background: white;
+      font-size: 2.25rem;
+      padding: 0.5rem;
+      margin-top: 2rem;
+      border-bottom: 2px solid dimgrey;
+      border-top: 2px solid dimgrey;
+    }
+
+    .statistics-chart {
+      background: white;
+      padding: 2.5rem;
+      width: 60rem;
+    }
+  }
+}

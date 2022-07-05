@@ -1,0 +1,20 @@
+<div class="notification-container"
+  (click)="navigateTo()">
+  <div class="title-container">
+    <div [class]="
+        'notification-icon ' +
+        (notification.type == NotificationTypeEnum.Event ? 'event' : 'news')
+      ">
+      <i [class]="
+          'fa-solid ' +
+          (notification.type == NotificationTypeEnum.Event
+            ? 'fa-flag'
+            : 'fa-newspaper')
+        "></i>
+    </div>
+    <div class="notification-title">{{ notification.title }}</div>
+  </div>
+  <div class="notification-description"
+    [innerHTML]="notification.description"></div>
+  <div class="notification-duration">{{ duration }}</div>
+</div>

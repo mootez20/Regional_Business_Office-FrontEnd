@@ -1,0 +1,39 @@
+<page-title title="page.services"></page-title>
+
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="box">
+          <ul class="box-body mx-20">
+            <li
+            class="my-20"
+              *ngFor="
+                let service of serviceList
+                  | paginate
+                    : {
+                        itemsPerPage: 8,
+                        currentPage: page,
+                        totalItems: total
+                      }
+              "
+            >
+              <a
+                class="btn btn-sm btn-primary"
+                href="{{ service.link }}"
+                style="font-size: 20px !important"
+                target="_blank"
+              >
+                {{ service.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <pagination-controls [nextLabel]="'page.next' | translate" [previousLabel]="'page.previous' | translate" (pageChange)="page = $event"></pagination-controls>
+      </div>
+      <div class="col-lg-3 col-md-4 col-12">
+        <side-bar></side-bar>
+      </div>
+    </div>
+  </div>
+</section>

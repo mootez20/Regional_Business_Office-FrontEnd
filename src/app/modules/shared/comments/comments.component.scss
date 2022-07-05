@@ -1,0 +1,66 @@
+:host {
+  display: block;
+
+  .comments-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 3.25rem;
+    background-color: white;
+    border-radius: 3px;
+
+    .count {
+      font-size: 2rem;
+      text-align: right;
+    }
+
+    .separator {
+      height: 2px;
+      margin: 0 0 1rem;
+      width: 100%;
+    }
+
+    .comments {
+      display: flex;
+      flex-direction: column;
+
+      .comment-reply-container {
+        display: flex;
+        margin-right: 7.5rem;
+
+        &.subComment {
+          margin-right: 15.25rem;
+        }
+
+        .comment-input {
+          flex: 1;
+          border-radius: 5px;
+          box-shadow: none;
+          border-color: #f3f6f9;
+          margin-left: 1rem;
+
+          &:focus-within {
+            border-color: #609ee2;
+          }
+        }
+        .comment-btn {
+          flex: 0;
+          background-color: #609ee2;
+          border-color: #609ee2;
+          color: #ffffff;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          box-shadow: none;
+          line-height: normal !important;
+          cursor: pointer;
+          padding: 0.5rem 1rem;
+          font-size: 1.5rem;
+          transition: all 0.5s ease-in-out;
+        }
+      }
+
+      & > *:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}

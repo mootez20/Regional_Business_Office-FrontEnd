@@ -1,0 +1,12 @@
+<div class="ckeckbox-container" (click)="value = !value">
+  <input
+    class="input"
+    type="checkbox"
+    [name]="optionName"
+    [class.disabled]="disabled"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChanged.emit($event)"
+    [ngModelOptions]="{ standalone: true }"
+  />
+  <label> {{ name }} </label>
+</div>

@@ -1,0 +1,70 @@
+<div class="ticket-container">
+  <div class="left">
+    <div class="image"
+      [style.background-image]="'url(' + STORAGE_URL + ticket.event.image + ')'">
+      <p class="admit-one">
+        <span>ADMIT ONE</span>
+        <span>ADMIT ONE</span>
+        <span>ADMIT ONE</span>
+      </p>
+      <div class="ticket-number">
+        <p>#2022{{ ticket.id }}</p>
+      </div>
+    </div>
+    <div class="ticket-info">
+      <p class="date"
+        *ngIf="ticket.event.startedAt">
+        <span>{{ ticket.event.startedAt | date: "ddd" }}</span>
+        <span class="middle">
+          {{ ticket.event.startedAt | date: "MMM dd" }}TH
+        </span>
+        <span>{{ ticket.event.startedAt | date: "yyyy" }}</span>
+      </p>
+      <div class="event-name">
+        <div class="name">{{ ticket.event.title }}</div>
+        <div>{{ ticket.quantity }} {{ "profile.tickets" | translate }}</div>
+      </div>
+      <div class="time"
+        *ngIf="ticket.event.startedAt">
+        <p>
+          {{ ticket.event.startedAt | date: "hh:mm tt" }}
+          <ng-container *ngIf="ticket.event.endedAt">
+            <span>{{ "profile.to" | translate }}</span>
+            {{ ticket.event.endedAt | date: "hh:mm tt" }}
+          </ng-container>
+        </p>
+      </div>
+      <p class="location">
+        <span>{{ ticket.event.location }}</span>
+        <span class="separator"><i class="far fa-smile"></i></span>
+      </p>
+    </div>
+  </div>
+  <div class="right">
+    <p class="admit-one">
+      <span>ADMIT ONE</span>
+      <span>ADMIT ONE</span>
+      <span>ADMIT ONE</span>
+    </p>
+    <div class="ticket-info">
+      <div class="event-name">
+        <div class="name">{{ ticket.event.title }}</div>
+      </div>
+      <div class="time"
+        *ngIf="ticket.event.startedAt">
+        <p>
+          {{ ticket.event.startedAt | date: "hh:mm tt" }}
+          <ng-container *ngIf="ticket.event.endedAt">
+            <span>{{ "profile.to" | translate }}</span>
+            {{ ticket.event.endedAt | date: "hh:mm tt" }}
+          </ng-container>
+        </p>
+      </div>
+      <div class="barcode">
+        <img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb"
+          alt="QR code" />
+      </div>
+      <p class="ticket-number">#2022{{ ticket.id }}</p>
+    </div>
+  </div>
+</div>

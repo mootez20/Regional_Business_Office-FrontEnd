@@ -1,0 +1,70 @@
+.modal-container {
+  display: flex;
+  flex-direction: column;
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2.5rem;
+    border: none;
+    max-height: 40rem;
+    overflow-y: auto;
+
+    & > *:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    .field-container {
+      display: flex;
+      align-items: flex-start;
+
+      .field-label {
+        flex: 0 0 10rem;
+      }
+
+      .field-control {
+        flex: 1 1 0;
+
+        &.mandatory {
+          flex: 0;
+          align-self: center;
+          position: unset;
+          left: unset;
+          right: unset;
+          opacity: unset;
+        }
+
+        &.select-container {
+          box-shadow: none;
+          height: 2.125rem;
+          min-width: 9rem;
+          padding: 0.25rem 1rem;
+          border-radius: 0.25rem;
+          border: 1px solid transparent;
+          background-color: #f1f2f3;
+          color: black;
+          font-family: var(--fa-style-family, "Font Awesome 6 Free");
+          font-weight: 501;
+          font-size: 1.25rem;
+          cursor: pointer;
+
+          .select-option {
+            display: flex;
+            font-family: var(--fa-style-family, "Font Awesome 6 Free");
+            font-weight: 501;
+            font-size: 1.25rem;
+          }
+
+          &.error {
+            border: 1px solid #b10b0b;
+          }
+
+          &:hover:not(.disabled) {
+            background-color: #3f7fc4;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}

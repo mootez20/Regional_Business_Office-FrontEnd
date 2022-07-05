@@ -1,0 +1,340 @@
+<page-title title="profile.title"></page-title>
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-12">
+        <div class="box position-sticky">
+          <div class="box-body text-center">
+            <div class="photo-profil">
+              <div class="outer">
+                <img [src]="STORAGE_URL + user?.image"
+                  width="250"
+                  class="rounded-circle bg-info-light"
+                  alt="user"
+                  id="photo" />
+                <div class="inner">
+                  <input class="inputfile"
+                    type="file"
+                    name="pic"
+                    accept="image/*"
+                    (change)="selectImage($event)" />
+                  <label>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="17"
+                      viewBox="0 0 20 17">
+                      <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
+                    </svg>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <a class="mt-20 mb-0 d-block"
+              href="{{ user }}">
+              {{ user?.firstName }} {{ user?.lastName }}
+            </a>
+            <h4>{{ user?.email }}</h4>
+          </div>
+          <div class="p-15 bt-1 bb-1">
+            <div class="profile-features">
+              <a class="feature-container"
+                (click)="currentTab = ProfileTabEnum.Notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span> {{ "profile.notifications" | translate }}</span>
+              </a>
+              <a class="feature-container"
+                (click)="currentTab = ProfileTabEnum.Tickets">
+                <i class="fa-solid fa-ticket"></i>
+                <span>{{ "profile.tickets" | translate }} </span>
+              </a>
+              <a *ngIf="user?.isAdmin"
+                class="feature-container"
+                (click)="currentTab = ProfileTabEnum.Events">
+                <i class="fa-solid fa-newspaper"></i>
+                <span> {{ "profile.events" | translate }} </span>
+              </a>
+            </div>
+          </div>
+          <ul class="nav d-block nav-stacked"
+            id="pills-tab23"
+            role="tablist">
+            <li class="nav-item">
+              <a class="nav-link"
+                [class.active]="currentTab === ProfileTabEnum.Info"
+                (click)="currentTab = ProfileTabEnum.Info">
+                <i class="fa-solid fa-user mx-10"></i>
+                {{ "profile.details" | translate }}
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link"
+                [class.active]="currentTab === ProfileTabEnum.Edit"
+                (click)="currentTab = ProfileTabEnum.Edit">
+                <i class="fa-solid fa-user-gear mx-10"></i>{{ "profile.editProfile" | translate }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"
+                [class.active]="currentTab === ProfileTabEnum.EditPassword"
+                (click)="currentTab = ProfileTabEnum.EditPassword">
+                <i class="fa-solid fa-user-lock mx-10"></i>
+                {{ "profile.editPassword" | translate }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="box">
+          <div class="box-body">
+            <div *ngIf="currentTab === ProfileTabEnum.Info">
+              <div class="box-title">{{ "profile.details" | translate }}</div>
+              <hr />
+              <ul class="list-unstyled clearfix">
+                <li class="w-md-p50 float-start pb-10">
+                  <a class="text-dark d-flex pe-50">
+                    <span class="fw-500 mx-10">{{ "profile.firstName" | translate }} :</span>
+                    <span class="text-muted"> {{ user?.firstName }} </span>
+                  </a>
+                </li>
+
+                <li class="w-md-p50 float-start pb-10">
+                  <a class="text-dark d-flex pe-50">
+                    <span class="fw-500 mx-10">{{ "profile.lastName" | translate }} :</span>
+                    <span class="text-muted"> {{ user?.lastName }} </span>
+                  </a>
+                </li>
+                <li class="w-md-p50 float-start pb-10">
+                  <a class="text-dark d-flex">
+                    <span class="fw-500 mx-10">{{ "profile.address" | translate }}:</span>
+                    <span class="text-muted"> {{ user?.address }} </span>
+                  </a>
+                </li>
+                <li class="w-md-p50 float-start pb-10">
+                  <a class="text-dark d-flex pe-50">
+                    <span class="fw-500 mx-10">{{ "profile.email" | translate }} :</span>
+                    <span class="text-muted">{{ user?.email }}</span>
+                  </a>
+                </li>
+                <li class="w-md-p50 float-start pb-10">
+                  <a class="text-dark d-flex">
+                    <span class="fw-500 mx-10">{{ "profile.phone" | translate }} :</span>
+                    <span class="text-muted"> {{ user?.phone }} </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div *ngIf="currentTab === ProfileTabEnum.Edit">
+              <div class="box-title">
+                {{ "profile.editProfile" | translate }}
+              </div>
+              <hr class="my-15" />
+              <form #userForm="ngForm"
+                class="form"
+                (ngSubmit)="save(userForm)"
+                novalidate>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">{{
+                        "profile.firstName" | translate
+                        }}</label>
+                      <input type="text"
+                        name="lastName"
+                        class="form-control input-size"
+                        [(ngModel)]="user.lastName"
+                        [placeholder]="'profile.firstName' | translate" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">{{
+                        "profile.lastName" | translate
+                        }}</label>
+                      <input type="text"
+                        name="firstName"
+                        class="form-control input-size"
+                        [placeholder]="'profile.lastName' | translate"
+                        [(ngModel)]="user.firstName" />
+                    </div>
+                  </div>
+                </div>
+                <h4 class="box-title mt-30">
+                  <b class="font-size: 24px">
+                    {{ "profile.communicationInfos" | translate }}
+                  </b>
+                </h4>
+                <hr class="my-15" />
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.email" | translate }}
+                  </label>
+                  <input class="form-control input-size"
+                    name="email"
+                    type="email"
+                    [placeholder]="'profile.email' | translate"
+                    [disabled]="true"
+                    [(ngModel)]="user.email" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.phone" | translate }}
+                  </label>
+                  <input class="form-control input-size"
+                    name="phone"
+                    type="tel"
+                    [placeholder]="'profile.phone' | translate"
+                    [(ngModel)]="user.phone" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.address" | translate }}
+                  </label>
+                  <input class="form-control input-size"
+                    name="address"
+                    type="text"
+                    [placeholder]="'profile.address' | translate"
+                    [(ngModel)]="user.address" />
+                </div>
+
+                <div class="button-container">
+                  <button type="button"
+                    class="cancel-button">
+                    <i class="fa-solid fa-trash"></i>
+                    {{ "profile.cancel" | translate }}
+                  </button>
+                  <button type="submit"
+                    class="submit-button">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    {{ "profile.save" | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div *ngIf="currentTab === ProfileTabEnum.EditPassword">
+              <div class="box-title">
+                {{ "profile.editPassword" | translate }}
+              </div>
+              <hr class="mb-15" />
+              <form class="form"
+                (ngSubmit)="changePassword()"
+                novalidate>
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.currentPassword" | translate }}
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                      </span>
+                    </div>
+                    <input class="form-control input-size"
+                      name="currentPassword"
+                      type="password"
+                      [placeholder]="'profile.currentPassword' | translate"
+                      required
+                      [(ngModel)]="currentPassword" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.newPassword" | translate }}
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                      </span>
+                    </div>
+                    <input class="form-control input-size"
+                      name="newPassword"
+                      type="password"
+                      [placeholder]="'profile.newPassword' | translate"
+                      required
+                      [(ngModel)]="newPassword" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">
+                    {{ "profile.confirmPassword" | translate }}</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                      </span>
+                    </div>
+                    <input class="form-control input-size"
+                      name="confirmPassword"
+                      type="password"
+                      [placeholder]="'profile.confirmPassword' | translate"
+                      required
+                      [(ngModel)]="confirmPassword" />
+                  </div>
+                </div>
+                <div class="button-container">
+                  <button type="button"
+                    class="cancel-button">
+                    <i class="fa-solid fa-trash"></i>
+                    {{ "profile.cancel" | translate }}
+                  </button>
+                  <button type="submit"
+                    class="submit-button">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    {{ "profile.save" | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div *ngIf="currentTab === ProfileTabEnum.Tickets">
+              <div class="box-title">
+                {{ "profile.tickets" | translate }}
+              </div>
+              <hr />
+              <div class="tickets-cotnainer">
+                <app-ticket *ngFor="let ticket of ticketList"
+                  [ticket]="ticket"></app-ticket>
+              </div>
+            </div>
+
+            <div *ngIf="currentTab === ProfileTabEnum.Notifications">
+              <div class="box-title">
+                {{ "profile.notifications" | translate }}
+              </div>
+              <hr />
+              <div class="notifications-container">
+                <user-notification *ngFor="let notification of notificationList"
+                  [notification]="notification"></user-notification>
+              </div>
+            </div>
+
+            <div *ngIf="currentTab === ProfileTabEnum.Events">
+              <div class="box-title">
+                {{ "profile.newsAndEvents" | translate }}
+              </div>
+              <hr />
+              <div class="events-container">
+                <user-event *ngFor="let event of eventList"
+                  [event]="event"
+                  (edit)="openEventModal()"
+                  (remove)="deleteEvent(event)"
+                  (createForm)="createEventForm(event)"
+                  (editForm)="editForm(event)"></user-event>
+              </div>
+              <app-button class="add-button"
+                name="profile.addNewsOrEvent"
+                icon="plus"
+                (click)="openEventModal()"></app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

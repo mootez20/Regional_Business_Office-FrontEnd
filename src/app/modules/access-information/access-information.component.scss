@@ -1,0 +1,12 @@
+.nav-pills {
+  justify-content: center;
+
+  li.active > a {
+    background: rgba(13, 81, 137, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+.tab-content {
+  padding: 15px;
+  border: thick double #32a1ce;
+}

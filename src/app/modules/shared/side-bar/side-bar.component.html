@@ -1,0 +1,89 @@
+<div class="side-block px-20 py-10 bg-white">
+  <div *ngIf="lastNews" class="widget clearfix">
+    <h4 class="pb-15 mb-25 bb-1" style="font-size: 30px">
+      <b>{{ "sideBar.lastNews" | translate }}</b>
+    </h4>
+    <ul class="list list-unstyled">
+      <li>
+        <button class="button-news" (click)="searchLastNews.emit()">
+          {{ "sideBar.last5News" | translate }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <calendar *ngIf="hasCalendar"></calendar>
+  <div class="widget">
+    <h4 class="pb-15 mb-25 bb-1" style="font-size: 30px">
+      <b>{{ "sideBar.newsBroadCast" | translate }}</b>
+    </h4>
+    <div class="widget-newsletter">
+      <div class="newsletter-icon">
+        <i class="fa fa-envelope-o"></i>
+      </div>
+      <div class="newsletter-content">
+        <i style="font-size: 25px">{{ "sideBar.emailLabel" | translate }} </i>
+      </div>
+      <div class="newsletter-form mt-20">
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="exampleInputEmail2"
+            [placeholder]="'sideBar.email' | translate"
+            [(ngModel)]="email"
+          />
+        </div>
+        <a
+          class="btn btn-primary w-p100"
+          style="font-size: 22px; padding-top: 3px"
+          (click)="email && subscribe()"
+        >
+          {{ "sideBar.send" | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="widget mb-10">
+    <h4 class="pb-15 mb-25 bb-1" style="font-size: 30px">
+      <b> {{ "sideBar.contact" | translate }} </b>
+    </h4>
+    <form
+      #contactForm="ngForm"
+      class="gray-form"
+      novalidate
+      (ngSubmit)="submit(contactForm)"
+    >
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          name="lastName"
+          [placeholder]="'sideBar.lastName' | translate"
+          required
+          [(ngModel)]="contact.lastName"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          [placeholder]="'sideBar.email' | translate"
+          required
+          [(ngModel)]="contact.email"
+        />
+      </div>
+
+      <div class="form-group">
+        <textarea class="form-control" rows="4" placeholder="رسالة"></textarea>
+      </div>
+      <a
+        class="btn btn-primary w-p100"
+        style="font-size: 22px; padding-top: 3px"
+      >
+        {{ "sideBar.send" | translate }}
+      </a>
+    </form>
+  </div>
+</div>

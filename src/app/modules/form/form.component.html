@@ -1,0 +1,47 @@
+<page-title [title]="form.name"></page-title>
+<div class="form-container">
+  <question-panel
+    class="question-panel"
+    *ngFor="let question of form.questions"
+    [question]="question"
+    [buildMode]="buildMode"
+    [selected]="selectedQuestion === question.id"
+    [length]="form.questions?.length || 1"
+    (edit)="editQuestion(question)"
+    (remove)="deleteQuestion(question.id)"
+    (click)="selectedQuestion = question.id"
+  >
+    <app-option
+      *ngFor="let option of question.options; index as i"
+      class="option-content"
+      [name]="'option ' + i"
+      [option]="option"
+      [nature]="question.nature"
+    ></app-option>
+  </question-panel>
+  <div class="button-container">
+    <div
+      class="add-button-container"
+      *ngIf="buildMode"
+    >
+      <app-button
+        class="add-button"
+        name="form.addQuestion"
+        icon="plus"
+        [width]="11"
+        (click)="addNewQuestion(form.questions?.length || 0)"
+      >
+      </app-button>
+    </div>
+
+    <app-button
+      name="form.save"
+      icon="floppy-disk"
+      [width]="11"
+      (click)="
+        FormNatureEnum.Response === form.nature ? saveResponse() : saveForm()
+      "
+    >
+    </app-button>
+  </div>
+</div>

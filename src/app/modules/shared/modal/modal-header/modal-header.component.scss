@@ -1,0 +1,31 @@
+:host {
+  display: block;
+
+  .modal-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+
+    .modal-header-title {
+      flex: 1 1 auto;
+      font-size: 2rem;
+      padding-left: 1rem;
+    }
+
+    .modal-header-icon {
+      color: black;
+      margin: 0 2.5rem 0 1rem;
+      width: 24px;
+      height: 24px;
+      font-size: 1.75rem;
+    }
+
+    .modal-header-action {
+      font-size: 1.75rem;
+      color: #6a768c;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+    }
+  }
+}

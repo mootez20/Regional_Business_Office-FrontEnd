@@ -1,0 +1,59 @@
+:host {
+  display: block;
+
+  .notification-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    direction: ltr;
+    text-align: right;
+    border-radius: 2px;
+    background-color: #aaaaaa22;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #609ee288;
+    }
+
+    .title-container {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .notification-icon {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.5rem;
+        border-radius: 50%;
+        &.news {
+          background-color: rgb(3, 105, 226);
+        }
+        &.event {
+          background-color: rgb(251, 128, 32);
+        }
+        i {
+          font-size: 1rem;
+          color: white;
+        }
+      }
+      .notification-title {
+        flex: 1;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    .notification-description {
+      font-size: 1.375rem;
+    }
+    .notification-duration {
+      font-size: 1.25rem;
+      color: #609ee2;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<page-title
+  title="page.subjectToDiscuss"
+  backgroundUrl="assets/images/front-end-img/background/bg-8.jpg"
+></page-title>
+
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="subject">{{ subject.title }}</div>
+        <div class="separator"></div>
+        <comments
+          [comments]="subject.comments || []"
+          [subjectId]="subject.id"
+          [userId]="user.id"
+          (refresh)="loadData($event)"
+        ></comments>
+      </div>
+      <div class="col-lg-3 col-md-4 col-12">
+        <side-bar></side-bar>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<page-title title="page.partners"></page-title>
+
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-lg-3 col-md-6 col-12"
+        *ngFor="
+          let partner of partnerList
+            | paginate
+              : {
+                  itemsPerPage: 8,
+                  currentPage: page,
+                  totalItems: total
+                }
+        "
+      >
+        <a
+          class="box box-link-shadow text-center pull-up"
+          href="{{ partner.link }}"
+          target="_blank"
+        >
+          <div class="box-body py-15 bg-secondary bbrr-0 bblr-0">
+            <p class="fw-600">{{ partner.name }}</p>
+          </div>
+          <div class="box-body">
+            <p class="mt-5">
+              <img
+                [src]="STORAGE_URL + partner.logo"
+                class="img-fluid my-15 rounded box-shadowed pull-up"
+              />
+            </p>
+          </div>
+        </a>
+      </div>
+      <pagination-controls
+        [nextLabel]="'page.next' | translate"
+        [previousLabel]="'page.previous' | translate"
+        (pageChange)="page = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</section>

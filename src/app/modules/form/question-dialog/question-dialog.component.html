@@ -1,0 +1,84 @@
+<div class="modal-container">
+  <modal-header title="form.editQuestion"
+    icon="circle-question"
+    (close)="cancel()"></modal-header>
+  <form class="modal-content"
+    name="form"
+    role="form"
+    #questionForm="ngForm"
+    novalidate
+    (ngSubmit)="save(questionForm)">
+    <div class="field-container">
+      <app-label class="field-label"
+        text="form.name"> </app-label>
+      <app-input class="field-control"
+        type="text"
+        name="name"
+        [required]="true"
+        [value]="question.name"
+        (valueChanged)="question.name = $event"></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label"
+        text="form.nature"> </app-label>
+      <select class="field-control select-container"
+        name="nature"
+        required
+        [(ngModel)]="question.nature"
+        (ngModelChange)="natureChanged()">
+        <option *ngFor="let nature of QuestionNatureEnum.values"
+          class="select-option"
+          [ngValue]="nature">
+          <div [innerHtml]="QuestionNatureEnum.iconCode(nature) + '  '"></div>
+          <app-label [text]="QuestionNatureEnum.name(nature)"> </app-label>
+        </option>
+      </select>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label"
+        text="form.mandatory"> </app-label>
+      <input class="field-control mandatory"
+        type="checkbox"
+        name="mandatory"
+        [(ngModel)]="question.mandatory" />
+    </div>
+    <div class="field-container"
+      *ngIf="QuestionNatureEnum.haveOptions.includes(question.nature)">
+      <app-label class="field-label"
+        text="form.options"> </app-label>
+      <app-input *ngIf="
+          QuestionNatureEnum.naturesHaveListOptions.includes(question.nature)
+        "
+        class="field-control"
+        name="optionList"
+        type="text"
+        [required]="true"
+        [value]="question.options[0].optionList || ''"
+        (valueChanged)="optionsChanged($event)"></app-input>
+      <div class="field-control options-container"
+        *ngIf="QuestionNatureEnum.naturesHaveOptions.includes(question.nature)">
+        <div class="options-list">
+          <div class="option"
+            *ngFor="let option of question.options; index as i">
+            <app-input type="text"
+              name="option {{ i }}"
+              class="option-input"
+              [required]="true"
+              [value]="option.name || ''"
+              (valueChanged)="option.name = $event"></app-input>
+            <i *ngIf="question.options.length > 1"
+              class="option-delete fa-solid fa-trash"
+              (click)="deleteOption(option.id)"></i>
+          </div>
+        </div>
+        <app-button name="form.addOption"
+          icon="plus"
+          [width]="10"
+          (click)="addOption(question.options?.length || 0)">
+        </app-button>
+      </div>
+    </div>
+  </form>
+  <modal-footer (cancel)="cancel()"
+    (save)="save(questionForm)"></modal-footer>
+</div>

@@ -1,0 +1,93 @@
+<section class="py-50 bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-12 text-center">
+        <h1 class="mb-15">
+          {{'page.eventList' | translate }} 
+          <ng-container *ngIf="(selectedCity || currentCity)?.id"> {{ ('cities.' + (selectedCity || currentCity)?.name) | translate }}
+          </ng-container>
+        </h1>
+        <hr class="w-100 bg-primary" />
+      </div>
+    </div>
+    <div class="row mt-30">
+      <div class="col-12">
+        <ul class="nav nav-tabs justify-content-center bb-0 mb-10"
+          role="tablist"
+          *ngFor="let city of cityList; index as i">
+          <li *ngIf="!selectedCity"
+            class="nav-item">
+            <a 
+              class="nav-link {{ city?.id == currentCity?.id ? 'active' : '' }}"
+              data-bs-toggle="tab"
+              href="#tab1"
+              role="tab"
+              (click)="currentCity = city; cityChanged.emit(city);">
+              <b *ngIf="city?.id">{{ ('cities.'+ city?.name ) | translate }}</b>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active"
+            id="all"
+            role="tabpanel">
+            <div class="px-15 pt-15">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-12"
+                  *ngFor="let event of eventList">
+                  <div class="box">
+                    <div class="position-absolute r-10 t-10">
+                      <button type="button"
+                        class="waves-effect waves-circle btn btn-circle btn-dark btn-xs me-5">
+                        <i class="fa fa-heart-o"></i>
+                      </button>
+                    </div>
+                    <div class="card-img-top event-image"
+                      routerLink="/event/event/{{ event.id }}"
+                      [style.background-image]="'url(' + STORAGE_URL + event.image?.replaceAll('\\', '/') + ')'">
+                    </div>
+                    <div class="box-body">
+                      <div class="text-start">
+                        <h4 class="box-title">{{ event.title }}</h4>
+                        <div>
+                          <p *ngIf="event.startedAt || event.createdAt"
+                            class="mb-10 text-light fs-12"
+                            style="padding-left: 20px">
+                            <i class="fa fa-calendar me-5"></i>
+                            {{ (event.startedAt || event.createdAt) | date: "yyyy-MM-dd HH:mm" }}
+                          </p>
+                          <p class="mb-10 text-light fs-12">
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ event.location }}
+                          </p>
+                        </div>
+
+                        <p class="box-text event-description"
+                          [innerHTML]="event.description"> </p>
+                        <a routerLink="/event/event/{{ event.id }}"
+                          class="btn btn-outline btn-primary btn-sm"
+                          style="font-size: 22px; padding-top: 3px"> {{'page.seeMore' | translate }}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a *ngIf="eventList.length >= 4"
+                  routerLink="/event-list/events"
+                  id="partner"
+                  class="btn btn-outline btn-primary btn-sm"
+                  style="
+                    width: 10%;
+                    margin-right: 45%;
+                    font-size: 22px;
+                    padding-top: 3px;
+                  ">
+                  {{'page.showMore' | translate }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

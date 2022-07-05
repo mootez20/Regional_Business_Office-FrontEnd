@@ -1,0 +1,43 @@
+<div class="modal-container">
+  <modal-header
+    title="profile.dialog.createForm"
+    icon="ticket"
+    (close)="close()"
+  ></modal-header>
+  <form
+    class="modal-content"
+    name="form"
+    role="form"
+    #formForm="ngForm"
+    novalidate
+    (ngSubmit)="save(formForm)"
+  >
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.title"></app-label>
+      <app-input
+        class="field-control"
+        type="text"
+        name="title"
+        [value]="form.name"
+        (valueChanged)="form.name = $event"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.image"></app-label>
+      <div class="field-control">
+        <input
+          name="image"
+          type="file"
+          accept="image/*"
+          required="true"
+          (change)="selectImage($event)"
+        />
+        <div
+          class="form-image"
+          [style.background-image]="'url(' + STORAGE_URL + form.image + ')'"
+        ></div>
+      </div>
+    </div>
+  </form>
+  <modal-footer (cancel)="close()" (save)="save(formForm)"></modal-footer>
+</div>

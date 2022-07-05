@@ -1,0 +1,53 @@
+<div class="modal-container">
+  <modal-header
+    [title]="
+      !ticket?.id ? 'page.dialog.createTicket' : 'page.dialog.editTicket'
+    "
+    icon="ticket"
+    (close)="close()"
+  ></modal-header>
+  <form
+    class="modal-content"
+    name="form"
+    role="form"
+    #ticketForm="ngForm"
+    novalidate
+    (ngSubmit)="save(ticketForm)"
+  >
+    <div class="field-container">
+      <app-label class="field-label" text="page.dialog.price"></app-label>
+      <app-input
+        class="field-control"
+        type="text"
+        name="unitPrice"
+        [disabled]="true"
+        [value]="unitPrice + ''"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="page.dialog.quantity"></app-label>
+      <select
+        class="field-control"
+        name="quantity"
+        required
+        [(ngModel)]="ticket.quantity"
+        (ngModelChange)="ticket.price = ticket.quantity * unitPrice"
+      >
+        <option *ngFor="let quantity of quantities" [ngValue]="quantity">
+          {{ quantity }}
+        </option>
+      </select>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="page.dialog.totalPrice"></app-label>
+      <app-input
+        class="field-control"
+        type="text"
+        name="price"
+        [disabled]="true"
+        [value]="ticket.price + ''"
+      ></app-input>
+    </div>
+  </form>
+  <modal-footer (cancel)="close()" (save)="save(ticketForm)"></modal-footer>
+</div>

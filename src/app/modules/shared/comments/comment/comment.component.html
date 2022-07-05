@@ -1,0 +1,33 @@
+<div class="comment-container" [class.sub-comment]="level === 2">
+  <div class="comment-image">
+    <img [src]="STORAGE_URL + comment.user.image" />
+  </div>
+  <div class="comment-info">
+    <div class="comment-content">
+      <div class="comment-user">
+        {{ comment.user.firstName }} {{ comment.user.lastName }}
+        <span  *ngIf="comment.createdAt">{{ comment.createdAt | date: "MMM dd, yyyy" }}</span>
+      </div>
+      {{ comment.content }}
+    </div>
+    <ng-container *ngIf="level == 1">
+      <div class="comment-reply">
+        <div class="comment-duration">{{ comment.duration }}</div>
+        <button
+          type="button"
+          class="comment-reply-btn"
+          (click)="comment.reply = true; reply.emit(comment.id)"
+        >
+          {{ "page.reply" | translate }}
+        </button>
+      </div>
+      <div
+        *ngIf="!comment.reply && comment.subComments?.length"
+        (click)="comment.reply = true; reply.emit(comment.id)"
+      >
+        <i class="fa-solid fa-arrow-left-long"></i>
+        {{ comment.subComments.length }} {{ "page.comments" | translate }}
+      </div></ng-container
+    >
+  </div>
+</div>

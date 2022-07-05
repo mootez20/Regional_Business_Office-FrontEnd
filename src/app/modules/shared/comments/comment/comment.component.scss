@@ -1,0 +1,59 @@
+:host {
+  .comment-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+
+    &.sub-comment {
+      padding-right: 7.75rem;
+    }
+
+    .comment-image {
+      width: 6.25rem;
+      height: 5.15rem;
+      border: 0.125rem solid #f3f6f9;
+      margin-left: 1.25rem;
+
+      img {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .comment-info {
+      flex: 1;
+      text-align: right;
+
+      .comment-content {
+        background: #f3f6f9;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+
+        .comment-user {
+          color: #172b4c;
+          font-weight: 700;
+          font-size: 1.75rem;
+        }
+      }
+
+      .comment-reply {
+        display: flex;
+        align-items: center;
+
+        .comment-duration {
+          color: grey;
+          font-size: 1.25rem;
+        }
+
+        .comment-reply-btn {
+          margin-right: 1rem;
+          font-weight: 700;
+          color: #0e3471;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

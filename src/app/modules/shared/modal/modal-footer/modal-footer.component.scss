@@ -1,0 +1,12 @@
+.modal-footer-container {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+  border-top: 1px solid #eaecf0;
+
+  & > *:not(:last-child) {
+    margin-left: 1rem;
+  }
+}

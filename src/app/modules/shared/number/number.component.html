@@ -1,0 +1,10 @@
+<input
+  class="input"
+  type="number"
+  [name]="name"
+  [class.disabled]="disabled"
+  [placeholder]="placeholder"
+  [required]="required"
+  [(ngModel)]="value"
+  (ngModelChange)="valueChanged.emit($event)"
+/>

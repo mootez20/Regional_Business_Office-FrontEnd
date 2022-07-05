@@ -1,0 +1,42 @@
+:host {
+  display: block;
+
+  .input {
+    height: 34px;
+    min-width: auto;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 0.625rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+    outline: none;
+    border: #e6eaf1 1px solid;
+    background-color: #f1f2f3;
+    font-size: 1.5rem;
+    text-align: right;
+
+    &::placeholder {
+      color: #afb9c5;
+    }
+
+    &:hover {
+      background-color: #f2f3f7;
+    }
+
+    &:focus {
+      border: 1px solid #0d4e8a;
+      caret-color: #0d4e8a;
+    }
+
+    &:active {
+      border: 1px solid #0d4e8a;
+    }
+
+    &.disabled {
+      color: #afb9c5;
+      background: #f4f5f7;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+}

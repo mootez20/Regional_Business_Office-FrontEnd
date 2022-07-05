@@ -1,0 +1,22 @@
+<input
+  *ngIf="!textArea"
+  class="input"
+  [type]="type"
+  [name]="name || ''"
+  [class.disabled]="disabled"
+  [placeholder]="placeholder"
+  [required]="required"
+  [(ngModel)]="value"
+  (ngModelChange)="valueChanged.emit($event)"
+/>
+
+<textarea
+  *ngIf="textArea"
+  class="input textarea"
+  [name]="name || ''"
+  [class.disabled]="disabled"
+  [placeholder]="placeholder"
+  [required]="required"
+  [(ngModel)]="value"
+  (ngModelChange)="valueChanged.emit($event)"
+></textarea>

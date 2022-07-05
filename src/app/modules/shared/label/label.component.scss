@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  .label {
+    color: #172b4c;
+    text-align: right;
+    font-size: 1.75rem;
+
+    &.small {
+      font-size: 1.5rem;
+    }
+
+    &.big {
+      font-size: 2rem;
+    }
+  }
+}

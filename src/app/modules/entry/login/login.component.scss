@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  font-size: 1.25rem;
+
+  .login-container {
+    background-color: #d5d7da;
+
+    .clickable {
+      cursor: pointer;
+    }
+  }
+}

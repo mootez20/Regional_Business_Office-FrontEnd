@@ -1,0 +1,29 @@
+<page-title title="page.subjectsToDiscuss"></page-title>
+
+<section class="py-50 cust-accordion">
+  <div class="container">
+    <div class="row subject-list-container">
+      <div
+        class="subject-container"
+        *ngFor="
+          let subject of subjectList
+            | paginate
+              : {
+                  itemsPerPage: 8,
+                  currentPage: page,
+                  totalItems: total
+                }
+        "
+      >
+        <i class="fa-solid fa-angle-left mx-20"></i>
+        <a routerLink="/subject/{{ subject.id }}">{{ subject.title }}</a>
+      </div>
+
+      <pagination-controls
+        [nextLabel]="'page.next' | translate"
+        [previousLabel]="'page.previous' | translate"
+        (pageChange)="pageChanged($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,3 @@
+* add logo project in header
+* add map to choose location
+* add statics vues

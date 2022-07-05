@@ -1,0 +1,42 @@
+.nav {
+  display: inline-flex;
+}
+.text-light {
+  display: inline-block;
+}
+
+.event-image {
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.event-description {
+  height: 9rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.botton {
+  width: 10%;
+  margin-right: 45%;
+}
+
+.first-btn {
+  width: 10%;
+  margin-right: 45%;
+  font-size: 22px;
+  padding-top: 3px;
+}
+
+.col-lg-7 {
+  background-color: #38363626;
+  border-radius: 30px;
+
+  height: 60px;
+  width: 58%;
+}

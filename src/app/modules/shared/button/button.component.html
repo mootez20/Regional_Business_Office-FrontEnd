@@ -1,0 +1,9 @@
+<button
+  class="button-container  {{ css }}"
+  type="button"
+  [disabled]="disabled"
+  [style.min-width]="width + 'rem'"
+>
+  <i *ngIf="icon" class="button-icon fa-solid fa-{{ icon }}"></i>
+  <div class="button-text">{{ name | translate }}</div>
+</button>

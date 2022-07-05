@@ -1,0 +1,82 @@
+<section class="bg-img banner">
+  <ng-container *ngIf="selectedCity; else tunisia">
+    <img
+      *ngFor="let image of selectedCity?.images"
+      [src]="STORAGE_URL + image"
+    />
+  </ng-container>
+  <ng-template #tunisia>
+    <img
+      *ngFor="let image of tunisiaImages"
+      [src]="STORAGE_URL + image"
+    />
+  </ng-template>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center mt-80">
+          <h1 class="box-title text-white mb-30">
+            {{ "page.chooseCity" | translate }}
+          </h1>
+        </div>
+        <div
+          class="form row g-0 align-items-center cours-search max-w-950 mb-30"
+        >
+          <div
+            class="form-group col-xl-3 col-lg-3 col-12 mb-lg-0 mb-5 bg-white position-relative"
+          >
+            <span
+              class="form-control input-lg b-0 be-1 border-light rounded-0"
+              style="font-size: 21px; padding-top: 5px !important"
+              [innerText]="'page.location' | translate"
+            >
+            </span>
+            <span class="position-absolute r-16 t-16">
+              <button
+                type="button"
+                class="btn btn-map"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <i class="fa fa-map-marker"></i>
+              </button>
+            </span>
+          </div>
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="form-group col-xl-3 col-lg-3 col-12 mb-lg-0 mb-5 bg-white ser-slt"
+          >
+            <select
+              id="citySelect"
+              class="form-control select2"
+              style="width: 100%"
+              [(ngModel)]="currentCity"
+            >
+              <option [ngValue]="undefined">
+                {{ "cities.all" | translate }}
+              </option>
+              <option *ngFor="let city of cityList" [ngValue]="city">
+                {{ "cities." + city.name | translate }}
+              </option>
+            </select>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-12 mb-0">
+            <a
+              class="btn w-p100 btn-info rounded-0"
+              style="font-size: 26px"
+              (click)="selectCity(currentCity)"
+            >
+              {{ "page.search" | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+/* .entry-image{
+    display: inline-block;
+    flex-wrap: wrap;
+} */
+
+/* .img{
+    max-width: 100%;
+    margin-top: -16px;
+    margin-left: 40px;
+} */
+
+/* .d-flex{
+     display: flex;
+  flex-wrap: wrap;
+} */
+
+/* .owl-carousel{
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* .owl-carousel > .item {
+    flex: 1 1 30%;
+    height: 100px;
+} */
+
+.popup-gallery {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(50px, auto);
+}

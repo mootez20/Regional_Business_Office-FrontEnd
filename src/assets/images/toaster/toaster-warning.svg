@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="13.42" viewBox="0 0 14 13.42">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Combined_Shape" data-name="Combined Shape" d="M12.175,13.42H1.825A1.823,1.823,0,0,1,.214,10.744L5.389.97a1.823,1.823,0,0,1,3.222,0l5.176,9.775a1.823,1.823,0,0,1-1.611,2.676ZM7,9.6a.911.911,0,1,0,.912.911A.912.912,0,0,0,7,9.6ZM7,2.3a.912.912,0,0,0-.911.911V7.773a.912.912,0,0,0,1.823,0V3.216A.913.913,0,0,0,7,2.3Z" transform="translate(0 0)" fill="#f6891e"/>
+    </clipPath>
+  </defs>
+  <g id="_Icon" data-name="🌐 Icon" transform="translate(-4.32 -5.471)">
+    <path id="Combined_Shape-2" data-name="Combined Shape" d="M12.175,13.42H1.825A1.823,1.823,0,0,1,.214,10.744L5.389.97a1.823,1.823,0,0,1,3.222,0l5.176,9.775a1.823,1.823,0,0,1-1.611,2.676ZM7,9.6a.911.911,0,1,0,.912.911A.912.912,0,0,0,7,9.6ZM7,2.3a.912.912,0,0,0-.911.911V7.773a.912.912,0,0,0,1.823,0V3.216A.913.913,0,0,0,7,2.3Z" transform="translate(4.319 5.471)" fill="#f6891e"/>
+    <g id="Groupe_5608" data-name="Groupe 5608" transform="translate(4.319 5.471)" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="↳ 🎨Color" transform="translate(-3.937 -4.986)">
+        <rect id="_Color_background" data-name="↳ 🎨Color background" width="21.873" height="21.873" fill="#f6891e"/>
+        <path id="Y300" d="M0,0H21.873V21.873H0Z" fill="#f6891e"/>
+      </g>
+    </g>
+  </g>
+</svg>

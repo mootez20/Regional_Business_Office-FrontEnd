@@ -1,0 +1,117 @@
+<div class="modal-container">
+  <modal-header
+    [title]="
+      !event?.id ? 'profile.dialog.createEvent' : 'profile.dialog.editEvent'
+    "
+    icon="newspaper"
+    (close)="close()"
+  ></modal-header>
+  <form
+    class="modal-content"
+    name="form"
+    role="form"
+    #eventForm="ngForm"
+    novalidate
+    (ngSubmit)="save(eventForm)"
+  >
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.title"></app-label>
+      <app-input
+        class="field-control"
+        type="text"
+        name="title"
+        [value]="event.title"
+        (valueChanged)="event.title = $event"
+      ></app-input>
+    </div>
+
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.nature"></app-label>
+      <select
+        class="field-control"
+        name="nature"
+        required
+        [disabled]="editMode"
+        [(ngModel)]="event.nature"
+      >
+        <option
+          *ngFor="let nature of EventNatureEnum.values"
+          [ngValue]="nature"
+        >
+          {{ nature }}
+        </option>
+      </select>
+    </div>
+
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.nature"></app-label>
+      <app-input
+        class="field-control"
+        name="description"
+        [textArea]="true"
+        [value]="event.description"
+        (valueChanged)="event.description = $event"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label
+        class="field-label"
+        text="profile.dialog.startedAt"
+      ></app-label>
+      <app-input
+        class="field-control"
+        name="startedAt"
+        type="date"
+        [value]="toString(event.startedAt)"
+        (valueChanged)="startedAtChanged($event)"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.endedAt"></app-label>
+      <app-input
+        class="field-control"
+        name="endedAt"
+        type="date"
+        [value]="toString(event.endedAt)"
+        (valueChanged)="endedAtChanged($event)"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.location"></app-label>
+      <app-input
+        class="field-control"
+        name="location"
+        type="text"
+        [required]="true"
+        [value]="event.location || ''"
+        (valueChanged)="event.location = $event"
+      ></app-input>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.price"></app-label>
+      <app-number
+        class="field-control"
+        name="price"
+        [value]="event.price || 0"
+        (valueChanged)="event.price = $event"
+      ></app-number>
+    </div>
+    <div class="field-container">
+      <app-label class="field-label" text="profile.dialog.image"></app-label>
+      <div class="field-control">
+        <input
+          name="image"
+          type="file"
+          accept="image/*"
+          required="true"
+          (change)="selectImage($event)"
+        />
+        <div
+          class="event-image"
+          [style.background-image]="'url(' + STORAGE_URL + event.image + ')'"
+        ></div>
+      </div>
+    </div>
+  </form>
+  <modal-footer (cancel)="close()" (save)="save(eventForm)"></modal-footer>
+</div>

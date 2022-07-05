@@ -1,0 +1,105 @@
+<div class="option-container">
+  <div class="option">
+    <ng-container [ngSwitch]="nature">
+      <app-input
+        *ngSwitchCase="QuestionNatureEnum.ShortText"
+        type="text"
+        [name]="name"
+        [value]="option.text || ''"
+        (valueChanged)="option.text = $event"
+      ></app-input>
+
+      <textarea
+        *ngSwitchCase="QuestionNatureEnum.LongText"
+        class="textarea"
+        [name]="name"
+        [(ngModel)]="option.text"
+      ></textarea>
+
+      <div
+        *ngSwitchCase="QuestionNatureEnum.UniqueChoice"
+        class="input-radio"
+        (click)="option.checked = !option.checked"
+      >
+        <input type="radio" [name]="name" [(ngModel)]="option.checked" />
+        <label> {{ option.name }} </label>
+      </div>
+
+      <app-checkbox
+        *ngSwitchCase="QuestionNatureEnum.MultiChoice"
+        [optionName]="name"
+        [name]="option.name || ''"
+        [value]="option.checked || false"
+        (valueChanged)="option.checked = $event"
+        (click)="option.checked = !option.checked"
+      ></app-checkbox>
+
+      <select
+        *ngSwitchCase="QuestionNatureEnum.ListUniSelect"
+        class="select"
+        [name]="name"
+        [ngModel]="option.selectedOption"
+        (ngModelChange)="selectChanged($event)"
+      >
+        <option [ngValue]="undefined">{{ option.answerList }}</option>
+        <option
+          class="select-option"
+          *ngFor="let subOption of option.subOptions"
+          [ngValue]="subOption.name"
+        >
+          {{ subOption.name }}
+        </option>
+      </select>
+
+      <select
+        *ngSwitchCase="QuestionNatureEnum.ListMultiSelect"
+        class="select"
+        [name]="name"
+        [ngModel]="option.selectedOption"
+        (ngModelChange)="selectChanged($event, true)"
+      >
+        <option [ngValue]="undefined">{{ option.answerList }}</option>
+        <option
+          *ngFor="let subOption of option.subOptions"
+          [value]="subOption.name"
+        >
+          {{ subOption.name }}
+        </option>
+      </select>
+
+      <app-input
+        *ngSwitchCase="QuestionNatureEnum.Date"
+        type="date"
+        [name]="name"
+        [value]="option.text || ''"
+        (valueChanged)="option.text = $event"
+      ></app-input>
+
+      <app-input
+        *ngSwitchCase="QuestionNatureEnum.DateTime"
+        type="datetime"
+        [name]="name"
+        [value]="option.text || ''"
+        (valueChanged)="option.text = $event"
+      ></app-input>
+
+      <app-number
+        *ngSwitchCase="QuestionNatureEnum.Number"
+        type="number"
+        [name]="name"
+        [value]="option.value || 1"
+        (valueChanged)="option.value = $event"
+      ></app-number>
+
+      <app-input
+        *ngSwitchCase="QuestionNatureEnum.Email"
+        type="email"
+        [name]="name"
+        [value]="option.text || ''"
+        (valueChanged)="option.text = $event"
+      ></app-input>
+
+      <ng-container *ngSwitchDefault></ng-container>
+    </ng-container>
+  </div>
+</div>

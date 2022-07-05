@@ -1,0 +1,68 @@
+<page-title [title]="(isNews ? 'page.news' : 'page.events') | translate"
+  [subtitle]="event.title"></page-title>
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="blog-post mb-30">
+          <div class="image-container">
+            <div class="image"
+              [style.background-image]="
+                'url(' + STORAGE_URL + event.image?.replaceAll('\\', '/') + ')'
+              "></div>
+          </div>
+          <div class="blog-detail">
+            <div class="event-info">
+              <a class="event-date"
+                *ngIf="event?.startedAt || event?.createdAt">
+                <i class="fa fa-calendar-o"></i>
+                {{ (event?.startedAt || event?.createdAt) | date: "yyyy-MM-dd HH:mm" }}
+              </a>
+              <span>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star-half text-warning"></i>
+                <span class="text-muted ms-2">458 أراء المواطنين </span>
+              </span>
+              <div class="d-flex align-items-center ms-35">
+                <i class="fa fa-heart text-danger me-5"></i> 781
+              </div>
+            </div>
+            <hr />
+            <div class="entry-title mb-10">
+              <a href="#"
+                class="fs-24"> {{ event?.title }} </a>
+            </div>
+            <div class="entry-content">
+              <p class="description"
+                [innerHtml]="event?.description"></p>
+              <app-button *ngIf="isConnected && !isNews && !!event.price"
+                class="mb-3"
+                name="page.bookTicket"
+                icon="ticket"
+                [width]="11"
+                (click)="bookTicket()">
+              </app-button>
+              <app-button *ngIf="isConnected && !isNews && !!event.form"
+                (click)="createResponse(event.form?.id, user?.id)"
+                name="page.fillForm"
+                icon="list-check"
+                [width]="11">
+              </app-button>
+            </div>
+          </div>
+        </div>
+        <comments [comments]="event.comments || []"
+          [eventId]="event.id"
+          [userId]="user.id"
+          (refresh)="loadData($event)"></comments>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-12">
+        <side-bar></side-bar>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+<div class="question-panel-container" [class.selected]="selected">
+  <div
+    class="question-panel-header"
+    [class.build-mode]="buildMode"
+    (click)="buildMode && edit.emit()"
+  >
+    <i class="question-icon {{ QuestionNatureEnum.icon(question.nature) }}"></i>
+    <div class="question-name">
+      <label> {{ question?.name }} </label>
+      <i *ngIf="question?.mandatory" class="fas fa-star mandatory-icon"></i>
+    </div>
+    <i
+      *ngIf="buildMode && length > 1"
+      class="question-delete fa-solid fa-trash"
+      (click)="$event.stopPropagation(); remove.emit()"
+    ></i>
+  </div>
+  <div class="question-panel-content">
+    <ng-content select=".option-content"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<page-title title="ألبوم الصور"
+  [subtitle]="album.title"></page-title>
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="blog-post mb-30">
+          <div class="popup-gallery">
+            <div class="d-flex gap-items-2 mb-10"
+              *ngFor="let photo of album.photos">
+              <a [href]="STORAGE_URL + photo.url"
+                title="Caption. Can be aligned to any side and contain any HTML.">
+                <img [src]="STORAGE_URL + photo.url" />
+              </a>
+            </div>
+          </div>
+          <div class="blog-detail">
+            <div class="entry-meta mb-10">
+              <ul class="list-unstyled">
+                <li>
+                  <a *ngIf="album.createdAt"><i class="fa fa-calendar-o"></i>
+                    {{ album.createdAt | date: "yyyy-MM-dd HH:mm" }}</a>
+                </li>
+              </ul>
+            </div>
+            <hr />
+            <div class="entry-title mb-10">
+              <h2 href="#"
+                class="fs-24">{{ album.title }}</h2>
+            </div>
+            <div class="entry-content">
+              <p [innerHTML]="album.description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-12">
+        <side-bar></side-bar>
+      </div>
+    </div>
+  </div>
+</section>

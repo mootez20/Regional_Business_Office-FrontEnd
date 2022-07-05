@@ -1,0 +1,14 @@
+.pagination{
+    display: flex;
+}
+
+.album-description {
+  font-size: 1.625rem;
+  height: 7.25rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}

@@ -1,0 +1,49 @@
+<page-title [title]="(isNewsList ? 'page.newsList' : 'page.eventList') | translate"></page-title>
+
+<section class="py-50">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-12">
+        <div class="box"
+          *ngFor="
+            let event of eventList
+              | paginate
+                : {
+                    itemsPerPage: 6,
+                    currentPage: page,
+                    totalItems: total
+                  }
+          ">
+          <div class="row g-0">
+            <div class="col-md-4 col-12 bg-img h-md-auto h-250"
+              [style.background-image]="
+                'url(' + STORAGE_URL + event.image.replaceAll('\\', '/') + ')'
+              "></div>
+            <div class="col-md-8 col-12">
+              <div class="box-body">
+                <div class="d-flex mb-10">
+                  <div>
+                    <i class="fa fa-calendar me-5"></i>
+                    {{ (event.startedAt || event.createdAt) | date: "yyyy, dd MMM" }}
+                  </div>
+                </div>
+                <p class="event-description"
+                  [innerHTML]="event.description"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <pagination-controls
+          [nextLabel]="'page.next' | translate"
+          [previousLabel]="'page.previous' | translate"
+          (pageChange)="pageChanged($event)"
+        ></pagination-controls>
+        
+      </div>
+      <div class="col-lg-3 col-md-4 col-12">
+        <side-bar [hasCalendar]="false" [lastNews]="lastNews" (searchLastNews)="searchLastNews()"></side-bar>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,220 @@
+<header class="top-bar left-menu">
+  <div class="topbar">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-lg-7 col-md-6 col-12">
+          <div class="d-lg-flex d-block">
+            <div class="topbar-social text-center text-md-start topbar-left">
+              <ul class="list-inline d-md-flex">
+                <li class="ms-lg-10 pe-10">
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-rounded btn-primary dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      {{ "page.language" | translate }}
+                    </button>
+                    <div class="dropdown-menu">
+                      <a
+                        class="dropdown-item"
+                        *ngFor="let language of languages"
+                        (click)="selectLanguage(language)"
+                      >
+                        {{ language.name | translate }}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li class="ms-10 pe-10">
+                  <a>
+                    <i class="text-white fa fa-question-circle"></i>
+                    {{ "page.askQuestion" | translate }}
+                  </a>
+                </li>
+                <li class="ms-10 pe-10">
+                  <a href="mailto:info@crc.com"
+                    ><i class="text-white fa fa-envelope"></i> info@crc.com</a
+                  >
+                </li>
+                <li class="ms-10 pe-10">
+                  <a href="tel:+123-878-1649"
+                    ><i class="text-white fa fa-phone"></i> +(1) 123-878-1649</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-12 xs-mb-10">
+          <div class="topbar-call text-center text-md-end topbar-right logo-container">
+            <img class="logo" src="assets/logo.png" height="40" width="40" />
+            وزارة شؤون الثقافية  -  المندوبية الجهوية بالمنستير
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-white nav-transparent core-nav nav-core-sticky">
+    <div class="container py-10">
+      <div class="wrap-core-nav-list right">
+        <ul class="menu core-nav-list">
+          <li [class]="currentRoute === '/' ? 'active' : ''">
+            <a routerLink="/"> {{ "page.home" | translate }}</a>
+          </li>
+          <li [class]="currentRoute === '/event-list/news' ? 'active' : ''">
+            <a routerLink="/event-list/news">
+              {{ "page.news" | translate }}
+            </a>
+          </li>
+          <li
+            [class]="
+              [
+                '/about',
+                '/album-list',
+                '/staff',
+                '/statistics',
+                '/partner-list'
+              ].includes(currentRoute)
+                ? 'active'
+                : ''
+            "
+            class="dropdown"
+            id="about"
+            (mouseover)="toggleDropdown('about', true)"
+            (mouseout)="toggleDropdown('about', false)"
+          >
+            <a>{{ "page.whoUs" | translate }}</a>
+            <ul class="dropdown-menu">
+              <li [class]="currentRoute === '/about' ? 'active' : ''">
+                <a routerLink="/about"> {{ "page.infos" | translate }}</a>
+              </li>
+              <li [class]="currentRoute === '/album-list' ? 'active' : ''">
+                <a routerLink="/album-list">
+                  {{ "page.albums" | translate }}
+                </a>
+              </li>
+              <li [class]="currentRoute === '/staff' ? 'active' : ''">
+                <a routerLink="/staff"> {{ "page.staff" | translate }} </a>
+              </li>
+              <li [class]="currentRoute === '/statistics' ? 'active' : ''">
+                <a routerLink="/statistics">
+                  {{ "page.statistics" | translate }}
+                </a>
+              </li>
+              <li [class]="currentRoute === '/partner-list' ? 'active' : ''">
+                <a routerLink="/partner-list">
+                  {{ "page.partners" | translate }}
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li [class]="currentRoute === '/event-list/events' ? 'active' : ''">
+            <a routerLink="/event-list/events">
+              {{ "page.events" | translate }}
+            </a>
+          </li>
+          <li [class]="currentRoute === '/services' ? 'active' : ''">
+            <a routerLink="/services"> {{ "page.services" | translate }}</a>
+          </li>
+          <li [class]="currentRoute === '/subject-list' ? 'active' : ''">
+            <a routerLink="/subject-list">
+              {{ "page.subjects" | translate }}
+            </a>
+          </li>
+          <li [class]="currentRoute === '/access-info' ? 'active' : ''">
+            <a routerLink="/access-info">
+              {{ "page.accessInfo" | translate }}
+            </a>
+          </li>
+          <li [class]="currentRoute === '/contact' ? 'active' : ''">
+            <a routerLink="/contact"> {{ "page.contact" | translate }} </a>
+          </li>
+          <ng-container *ngIf="connectedUser; else loginTemplate">
+            <li class="d-md-block d-none mr-auto">
+              <a href="#" class="btn btn-danger py-5">
+                {{ "page.city" | translate }}
+                <ng-container *ngIf="user.city?.id">
+                  {{ "cities." + user.city?.name | translate }}
+                </ng-container>
+              </a>
+            </li>
+            <li>
+              <div class="notification-wrapper">
+                <div
+                  class="notification-btn"
+                  (click)="showNotification = !showNotification"
+                >
+                  <div *ngIf="news" class="notification-point"></div>
+                  <i class="fa-solid fa-bell"></i>
+                </div>
+                <div
+                  *ngIf="showNotification"
+                  class="notification-content"
+                  (clickOutside)="showNotification = false"
+                >
+                  <div class="notification-header">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="label">
+                      {{ "page.notifications" | translate }}</span
+                    >
+                  </div>
+                  <app-notification
+                    *ngFor="let notification of notifications"
+                    [notification]="notification"
+                    (click)="check(notification.id)"
+                  >
+                  </app-notification>
+                </div>
+              </div>
+            </li>
+            <li
+              id="profile"
+              class="dropdown"
+              (mouseover)="toggleDropdown('profile', true)"
+              (mouseout)="toggleDropdown('profile', false)"
+            >
+              <a>
+                <img
+                  [src]="STORAGE_URL + user.image"
+                  width="40"
+                  height="40"
+                  class="rounded-circle"
+                />
+              </a>
+              <div class="dropdown-menu profile-menu">
+                <a class="dropdown-item rtl" routerLink="/profile">
+                  {{ "page.editProfile" | translate }}
+                </a>
+                <a class="dropdown-item rtl" (click)="logout()">
+                  {{ "page.logout" | translate }}
+                </a>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<ng-template #loginTemplate>
+  <li class="login-block">
+    <ul>
+      <li class="me-10 ps-10">
+        <a routerLink="login">
+          <i class="text-white fa fa-sign-in"></i>
+          {{ "page.login" | translate }}
+        </a>
+      </li>
+      <li class="separator"></li>
+      <li class="me-10 ps-10">
+        <a routerLink="register"
+          ><i class="text-white fa fa-user"></i>
+          {{ "page.newAccount" | translate }}
+        </a>
+      </li>
+    </ul>
+  </li>
+</ng-template>

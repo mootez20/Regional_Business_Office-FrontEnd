@@ -1,0 +1,15 @@
+<page-title title="page.statistics"></page-title>
+<div class="statistics-container">
+  <app-label class="chart-title" text="page.citiesStats"></app-label>
+  <div *ngIf="!loading" class="statistics-chart">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+    >
+    </canvas>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+:host {
+  display: block;
+
+  .page-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20rem;
+    padding-top: 10rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+    color: white;
+
+    .title {
+      font-size: 2.125rem;
+    }
+    .subtitle {
+      font-size: 1.75rem;
+    }
+  }
+}
